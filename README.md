@@ -153,7 +153,7 @@ In `configs/calvin_finetune/finetune_qwen25vl-3b_calvin.json`, we define all con
     "train_text_embedding": true
 },
 ```
-
+For QwenVL, you may use transformers >= 4.57.0. For Qwen3VL series, please use `RoboQwen3VL` instead of `RoboQwen3VL_int` for key `robovlm_name` in json file (the latter is used for the internal version of transformers, which we reported in the paper).
 
 
 ## Training
