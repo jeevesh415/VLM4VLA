@@ -1,5 +1,5 @@
 {
-    "robovlm_name": "RoboQwen3VL_int",
+    "robovlm_name": "RoboQwen3VL",
     "parent": null,
     "task_name": "calvin_finetune",
     "model": "qwen3vl",
