@@ -30,20 +30,32 @@ class RoboQwen25VL(BaseRoboVLM):
 
     @property
     def hidden_size(self):
-        return self.model.config.hidden_size
+        if hasattr(self.model.config, "hidden_size"):
+            return self.model.config.hidden_size
+        elif hasattr(self.model.config, "text_config"):
+            return self.model.config.text_config.hidden_size
 
     @property
     def word_embedding(self):
-        return self.model.model.language_model.embed_tokens  # weight
+        try:
+            return self.model.get_input_embeddings()  # Qwen3VLForConditionalGeneration
+        except:
+            return self.model.model.embed_tokens  # weight
 
     @property
     def text_tower(self):
         # not used
-        return self.model.model.language_model
+        try:
+            return self.model.language_model
+        except:
+            return self.model.model.language_model
 
     @property
     def vision_tower(self):
-        return self.model.visual
+        try:
+            return self.model.visual
+        except:
+            return self.model.model.visual
 
     @property
     def model(self):
